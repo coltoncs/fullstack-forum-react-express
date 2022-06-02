@@ -37,6 +37,9 @@ export class UserResolver {
     return '';
   }
 
+  // Provided a forgot-password token, allow the autenticated
+  // user to change their password. Token is returned from the
+  // forgotPassword mutation below.
   @Mutation(() => UserResponse)
   async changePassword(
     @Arg('token') token: string,
@@ -97,6 +100,10 @@ export class UserResolver {
     return { user };
   }
 
+  // Initiates a forgot-password flow where the server
+  // invalidates the users password and sends an email
+  // for the user to reset the password (see 
+  // changePassword mutation above)
   @Mutation(() => Boolean)
   async forgotPassword(
     @Arg('email') email: string,
@@ -123,6 +130,7 @@ export class UserResolver {
     return true;
   }
 
+  // Query the currently authenticated user (if there is one)
   @Query(() => User, {nullable: true})
   me(
     @Ctx() { req }: MyContext
@@ -132,9 +140,14 @@ export class UserResolver {
       return null
     }
 
-    return User.findOne(req.session.userId);
+    return User.findOne({where: { id: req.session.userId }});
   }
 
+  // Query list of all users on the forum
+  @Query(() => [User])
+  users() {
+    return User.find({});
+  }
 
   @Mutation(() => UserResponse)
   async register(
@@ -179,6 +192,8 @@ export class UserResolver {
     return { user };
   }
 
+  // Attempt to authenticate with the provided username (or email)
+  // and password provided to the server. Verifies password with argon2.
   @Mutation(() => UserResponse)
   async login(
     @Arg('usernameOrEmail') usernameOrEmail: string,
@@ -213,6 +228,7 @@ export class UserResolver {
     };
   }
 
+  // Attempts to logout the currently authenticated user
   @Mutation(() => Boolean)
   logout(
     @Ctx() { req, res }: MyContext

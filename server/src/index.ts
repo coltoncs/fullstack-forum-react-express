@@ -13,8 +13,6 @@ import cors from 'cors';
 import { createConnection } from "typeorm";
 import { Post, Upvote, User } from "./entities/";
 import path from "path";
-
-//refresh
 const main = async () => {
   const conn = await createConnection({
     type: "postgres",
@@ -26,9 +24,9 @@ const main = async () => {
     migrations: [path.join(__dirname, "./migrations/*")],
     entities: [Post, User, Upvote]
   })
-  await conn.runMigrations();
-
-  //await Post.delete({});
+  
+  // Uncomment this to run test data migrations, must have one user prior
+  //await conn.runMigrations();
 
   const app = express();
 

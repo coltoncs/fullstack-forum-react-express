@@ -15,5 +15,5 @@ export const Hero = ({ title }: { title: string }) => (
 )
 
 Hero.defaultProps = {
-  title: 'Online Forum',
+  title: 'The Community Forum',
 }

@@ -1,10 +1,10 @@
-import { Link as ChakraLink, Text, Flex, Box, Button } from "@chakra-ui/react";
+import { Link as ChakraLink, Text, Flex, Box, Button, Heading } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useLogoutMutation, useMeQuery } from "../generated/graphql";
 import { Size, useWindowSize } from "../utils/hooks/useWindowSize";
 import { AddIcon } from '@chakra-ui/icons'
 import { isServer } from "../utils/isServer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const Navigation: React.FC<{}> = ({}) => {
   const [{fetching: logoutFetching}, logout] = useLogoutMutation();
@@ -84,7 +84,12 @@ export const Navigation: React.FC<{}> = ({}) => {
         width="100vw"
       >
         <NextLink href={"/"}>
-          <ChakraLink color={'navText'}>Home</ChakraLink>
+          <ChakraLink color={'navText'}>
+            <Heading>CommForum</Heading>
+          </ChakraLink>
+        </NextLink>
+        <NextLink href="/community">
+          <ChakraLink color={'navText'}>Community</ChakraLink>
         </NextLink>
         {body}
       </Flex>
