@@ -9,12 +9,12 @@ I built this project following Ben Awad's [13 Hour Fullstack Tutorial on Youtube
 
 # Structure
 
-As stated before, this is the frontend portion of my full-stack website. This repository (named `frontend` locally) is placed in a `fullstack`folder alongside the `server` repo. Next.js listens on port 3000, while the server listens on port 4000. Here's a crude representation of my folder structure and how the two parts mesh:
+As stated before, this is the frontend portion of my full-stack website. This repository (named `frontend` locally) is placed in a `fullstack-forum-react-express`folder alongside the `server` repo. Next.js listens on port 3000, while the server listens on port 4000. Here's a crude representation of my folder structure and how the two parts mesh:
 
 ```mermaid
 graph TD;
-	fullstack-->frontend;
-	fullstack-->server;
+	fullstack-forum-react-express-->frontend;
+	fullstack-forum-react-express-->server;
 	frontend-->Next.js;
 	frontend-->ChakraUI;
 	frontend-->GraphQL;
@@ -30,7 +30,7 @@ graph TD;
 If you're wanting to clone this project for your own machine, it's important to get both your folder structure inline and your dependencies correct. 
 - Yarn 1.22.17
 - NPM 8.7.0
-1. Create a folder in your development directory with the project name. Mine was called `fullstack` as seen on the diagram above.
+1. Create a folder in your development directory with the project name. Mine was called `fullstack-forum-react-express` as seen on the diagram above.
 2. Inside your project folder, `mkdir frontend && cd frontend`
 3. `git clone` this repository into your newly created `frontend` folder.
 4. `yarn install`
