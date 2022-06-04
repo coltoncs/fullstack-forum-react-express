@@ -5,7 +5,7 @@ import {
   Heading,
   Link,
   Stack,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import { withUrqlClient } from "next-urql";
 import NextLink from "next/link";
@@ -29,10 +29,11 @@ const Index = () => {
     variables,
   });
 
-  if(!fetching && !data) {
+  if (error) {
     return (
-      <Layout hero heroText="Query Failed">
+      <Layout>
         <Wrapper>
+          <Hero title="Community Forum" />
           {error}
         </Wrapper>
       </Layout>
@@ -53,7 +54,7 @@ const Index = () => {
           </Link>
         </NextLink>
         <Stack spacing={8}>
-          {fetching && !data ? (
+          {fetching && !data && !error ? (
             <div>loading...</div>
           ) : (
             data!.posts.posts.map((post) => {
@@ -83,7 +84,10 @@ const Index = () => {
                       </Text>
                     </Flex>
                   </Box>
-                  <EditDeletePostButtons id={post.id} creatorId={post.creator.id}/>
+                  <EditDeletePostButtons
+                    id={post.id}
+                    creatorId={post.creator.id}
+                  />
                 </Flex>
               );
             })

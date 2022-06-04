@@ -8,7 +8,7 @@ export class User extends BaseEntity {
 
   @Field()
   @PrimaryGeneratedColumn()
-  id!: Number;
+  id!: number;
 
   @Field(() => String)
   @CreateDateColumn()

@@ -15,8 +15,10 @@ import { Post, Upvote, User } from "./entities/";
 import path from "path";
 import { createUserLoader } from "./utils/createUserLoader";
 import { createUpvoteLoader } from "./utils/createUpvoteLoader";
+
+//reroc
 const main = async () => {
-  const conn = await createConnection({
+  await createConnection({
     type: "postgres",
     database: "liddet",
     username: "postgres",
@@ -26,9 +28,6 @@ const main = async () => {
     migrations: [path.join(__dirname, "./migrations/*")],
     entities: [Post, User, Upvote],
   });
-
-  // Uncomment this to run test data migrations, must have one user prior
-  //await conn.runMigrations();
 
   const app = express();
 

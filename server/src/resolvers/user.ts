@@ -117,9 +117,8 @@ export class UserResolver {
     const token = v4();
     await redis.set(
       FORGET_PASSWORD_PREFIX + token,
-      //@ts-ignore user.id parameter matches redis.set() method
       user.id,
-      "ex",
+      "EX",
       1000 * 60 * 60 * 24 * 3
     );
     

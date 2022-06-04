@@ -1,4 +1,4 @@
-import { Text, ListItem, UnorderedList } from "@chakra-ui/react";
+import { Text, ListItem, UnorderedList, Box } from "@chakra-ui/react";
 import { withUrqlClient } from "next-urql";
 import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
@@ -14,17 +14,33 @@ const Community = () => {
     body = <Text>Fetching members...</Text>;
   } else {
     body = data!.users.map((user) => {
-      return <ListItem key={user.id}>{user.username}</ListItem>;
+      return (
+        <Box sx={{
+          background: "linear-gradient(to right, red, purple)",
+          padding: "3px",
+          position: 'relative'
+        }}>
+          <ListItem
+            w="100%"
+            sx={{
+              background: "gray.500",
+              padding: "5px",
+              listStyle: "none",
+            }}
+            key={user.id}
+          >
+            <Text align="center">{user.username}</Text>
+          </ListItem>
+        </Box>
+      );
     });
   }
 
   return (
     <Layout>
       <Wrapper>
-        <Hero title="Community Members" titleSize={4}/>
-        <UnorderedList>
-          {body}
-        </UnorderedList>
+        <Hero title="Community Members" titleSize={4} />
+        <UnorderedList>{body}</UnorderedList>
       </Wrapper>
     </Layout>
   );
