@@ -7,7 +7,7 @@ import { User, Upvote } from "./";
 export class Post extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
-  id!: Number;
+  id!: number;
 
   @Field()
   @Column()

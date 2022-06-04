@@ -18,11 +18,11 @@ const theme = extendTheme({
         _dark: '#ade3b8',
       },
       navText: {
-        default: '#fff',
+        default: '#333',
         _dark: '#ade3b8',
       },
       navBtn: {
-        default: '#000',
+        default: '#333',
         _dark: '#ade3b8',
       },
       heroGradientStart: {
@@ -33,6 +33,10 @@ const theme = extendTheme({
         default: '#FF0080',
         _dark: '#fbec8f',
       },
+      navColor: {
+        default: 'gray.200',
+        _dark: 'gray.600',
+      }
     },
     radii: {
       button: '12px',

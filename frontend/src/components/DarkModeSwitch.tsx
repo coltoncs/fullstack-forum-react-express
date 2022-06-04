@@ -2,6 +2,7 @@ import { useColorMode, IconButton } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { Size, useWindowSize } from "../utils/hooks/useWindowSize";
 import { useState, useEffect } from "react";
+import { serialize } from "v8";
 
 export const DarkModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();

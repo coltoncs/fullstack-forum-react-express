@@ -1,10 +1,12 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Container, Flex, Heading, Link } from "@chakra-ui/react";
 import { withUrqlClient } from "next-urql";
 import EditDeletePostButtons from "../../components/EditDeletePostButtons";
+import NextLink from "next/link";
 import Layout from "../../components/Layout";
 import Wrapper from "../../components/Wrapper";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 import useGetPostFromUrl from "../../utils/hooks/useGetPostFromUrl";
+import { Hero } from "../../components/Hero";
 
 const Post = () => {
   const [{ data, error, fetching }] = useGetPostFromUrl();
@@ -13,10 +15,21 @@ const Post = () => {
     return <Layout>...post fetching...</Layout>;
   }
 
+  if (error) {
+    return <Layout>Error: {error.message}</Layout>;
+  }
+
   if (!data?.post) {
     return (
       <Layout>
-        <Heading>No Post Found</Heading>
+        <Container sx={{ height: "50vh" }}>
+          <Hero title="No Post Found" titleSize={3.7} />
+          <Flex flexDir="column" justify="center" align="center">
+            <NextLink href={"/"}>
+              <Link>Go Home</Link>
+            </NextLink>
+          </Flex>
+        </Container>
       </Layout>
     );
   }
@@ -24,10 +37,13 @@ const Post = () => {
   return (
     <Layout>
       <Wrapper variant="large">
+        <Hero title={data.post.title} titleSize={3} />
         <Flex flexDir="column" gap="15px">
-          <Heading>{data.post.title}</Heading>
           {data.post.text}
-          <EditDeletePostButtons id={data.post.id} creatorId={data.post.creator.id}/>
+          <EditDeletePostButtons
+            id={data.post.id}
+            creatorId={data.post.creator.id}
+          />
         </Flex>
       </Wrapper>
     </Layout>

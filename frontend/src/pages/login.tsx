@@ -9,12 +9,14 @@ import { withUrqlClient } from "next-urql";
 import { createUrqlClient } from "../utils/createUrqlClient";
 import NextLink from "next/link";
 import Layout from "../components/Layout";
+import { Hero } from "../components/Hero";
 
 const Login: React.FC<{}> = ({}) => {
   const [, login] = useLoginMutation();
   return (
     <Layout hero heroText="Login">
         <Wrapper variant="small">
+          <Hero title="Login" />
           <Formik
             initialValues={{ usernameOrEmail: "", password: "" }}
             onSubmit={async (values, { setErrors }) => {

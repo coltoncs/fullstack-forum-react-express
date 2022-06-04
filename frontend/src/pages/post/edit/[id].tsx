@@ -1,7 +1,9 @@
 import { Button, Container, Flex } from "@chakra-ui/react";
-import { Field, Form, Formik, FormikProps } from "formik";
+import { Field, Form, Formik, FormikProps, useFormik } from "formik";
 import { withUrqlClient } from "next-urql";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import { Hero } from "../../../components/Hero";
 import InputField from "../../../components/InputField";
 import Layout from "../../../components/Layout";
 import Wrapper from "../../../components/Wrapper";
@@ -19,6 +21,7 @@ const EditPost: React.FC<{}> = ({}) => {
     },
   });
   const [, updatePost] = useUpdatePostMutation();
+  const [title, setTitle] = useState<string>();
 
   if (fetching) {
     return (
@@ -35,10 +38,11 @@ const EditPost: React.FC<{}> = ({}) => {
       </Layout>
     )
   }
-
+  
   return (
     <Layout hero heroText={'Edit Post'}>
       <Wrapper variant="small">
+        <Hero title={`Edit ${title ? title : data.post.title}`} titleSize={3} />
         <Formik
           initialValues={{ title: data.post.title, text: data.post.text }}
           onSubmit={async (values) => {

@@ -1,4 +1,5 @@
-import { Flex, Button } from "@chakra-ui/react";
+import { Flex, Button, Link } from "@chakra-ui/react";
+import NextLink from "next/link";
 import { useRegisterMutation } from "../generated/graphql";
 import Wrapper from "../components/Wrapper";
 import { Field, Form, Formik, FormikProps } from "formik";
@@ -8,6 +9,7 @@ import InputField from "../components/InputField";
 import { createUrqlClient } from "../utils/createUrqlClient";
 import { withUrqlClient } from "next-urql";
 import Layout from "../components/Layout";
+import { Hero } from "../components/Hero";
 
 interface registerProps {}
 
@@ -16,6 +18,7 @@ const register: React.FC<registerProps> = ({}) => {
   return (
     <Layout hero heroText="Register">
       <Wrapper variant="small">
+        <Hero title="Register" />
         <Formik
           initialValues={{ email: "", username: "", password: "" }}
           onSubmit={async (values, { setErrors }) => {
@@ -55,9 +58,14 @@ const register: React.FC<registerProps> = ({}) => {
                   label="Password"
                   type="password"
                 />
-                <Button mt={4} isLoading={props.isSubmitting} type="submit">
-                  Register
-                </Button>
+                <Flex flexDir={"column"} align={`center`} gap={`25px`}>
+                  <Button mt={4} isLoading={props.isSubmitting} type="submit">
+                    Register
+                  </Button>
+                  <NextLink href={`/login`}>
+                    <Link>Already have an account?</Link>
+                  </NextLink>
+                </Flex>
               </Flex>
             </Form>
           )}

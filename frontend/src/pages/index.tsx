@@ -11,6 +11,7 @@ import { withUrqlClient } from "next-urql";
 import NextLink from "next/link";
 import React, { useState } from "react";
 import EditDeletePostButtons from "../components/EditDeletePostButtons";
+import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
 import { UpvoteSection } from "../components/UpvoteSection";
 import Wrapper from "../components/Wrapper";
@@ -24,13 +25,24 @@ const Index = () => {
     cursor: null as null | string,
   });
 
-  const [{ data, fetching }] = usePostsQuery({
+  const [{ data, error, fetching }] = usePostsQuery({
     variables,
   });
 
+  if(!fetching && !data) {
+    return (
+      <Layout hero heroText="Query Failed">
+        <Wrapper>
+          {error}
+        </Wrapper>
+      </Layout>
+    );
+  }
+
   return (
-    <Layout hero>
+    <Layout>
       <Wrapper variant="large">
+        <Hero title="Community Forum" />
         <Text color="text" align={"center"} mb={10}>
           Testing out full-stack applications built with
           Express+Apollo+PostgreSQL backends and React+TS+Chakra frontends.

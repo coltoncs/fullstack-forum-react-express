@@ -8,6 +8,7 @@ import { useCreatePostMutation } from "../generated/graphql";
 import { createUrqlClient } from "../utils/createUrqlClient";
 import Layout from "../components/Layout";
 import { useIsAuth } from "../utils/hooks/useIsAuth";
+import { Hero } from "../components/Hero";
 
 const CreatePost: React.FC<{}> = ({}) => {
   const router = useRouter();
@@ -18,6 +19,7 @@ const CreatePost: React.FC<{}> = ({}) => {
   return (
     <Layout hero heroText="Create A New Post">
       <Wrapper variant="small">
+        <Hero title="Create Post" titleSize={4} />
         <Formik
           initialValues={{ title: "", text: "" }}
           onSubmit={async (values) => {

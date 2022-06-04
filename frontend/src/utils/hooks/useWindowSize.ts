@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDebouncedCallback } from "use-debounce";
 
 // Define general type for useWindowSize hook, which includes width and height
 export interface Size {
@@ -14,9 +15,20 @@ export function useWindowSize(): Size {
     width: undefined,
     height: undefined,
   });
+
+  // // Handler to call on window resize
+  // const handleResize = useDebouncedCallback(() => {
+  //   // Set window width/height to state
+  //   setWindowSize({
+  //     width: window.innerWidth,
+  //     height: window.innerHeight,
+  //   });
+  // }, 200); 
+
+
   useEffect(() => {
     // Handler to call on window resize
-    function handleResize() {
+    const handleResize = () => {
       // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
