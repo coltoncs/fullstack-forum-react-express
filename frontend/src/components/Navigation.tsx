@@ -7,11 +7,18 @@ import {
   Heading,
   IconButton,
 } from "@chakra-ui/react";
+import styled from '@emotion/styled';
 import NextLink from "next/link";
 import { useLogoutMutation, useMeQuery } from "../generated/graphql";
 import { AddIcon } from "@chakra-ui/icons";
 import { isServer } from "../utils/isServer";
 import { useRouter } from "next/router";
+
+const NavBar = styled(Flex)`
+  @media screen and (max-width: 800px) {
+    padding-right: 50px;
+  }
+`;
 
 export const Navigation: React.FC<{}> = ({}) => {
   const router = useRouter();
@@ -60,6 +67,9 @@ export const Navigation: React.FC<{}> = ({}) => {
         width="75%"
         color="navText"
       >
+        <Box>
+          <Text color="navBtn">Welcome, {data.me?.username}</Text>
+        </Box>
         <Button>
           <NextLink href="/community">
             <ChakraLink color="navBtn">Community</ChakraLink>
@@ -73,9 +83,6 @@ export const Navigation: React.FC<{}> = ({}) => {
         <NextLink href={"/create-post"}>
           <IconButton as={ChakraLink} color="navBtn" aria-label="Create post" icon={<AddIcon />} />
         </NextLink>
-        <Box>
-          <Text color="navBtn">Welcome, {data.me?.username}</Text>
-        </Box>
         <Button
           onClick={async () => {
             await logout();
@@ -90,7 +97,7 @@ export const Navigation: React.FC<{}> = ({}) => {
     );
   }
   return (
-    <Flex
+    <NavBar
       bgColor="navColor"
       h="20"
       justifyContent="center"
@@ -104,7 +111,7 @@ export const Navigation: React.FC<{}> = ({}) => {
         </ChakraLink>
       </NextLink>
       {body}
-    </Flex>
+    </NavBar>
   );
 };
 

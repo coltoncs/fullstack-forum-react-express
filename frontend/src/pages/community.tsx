@@ -16,14 +16,14 @@ const Community = () => {
     body = data!.users.map((user) => {
       return (
         <Box sx={{
-          background: "linear-gradient(to right, red, purple)",
+          background: "linear-gradient(to right, #e3a7f9, #fbec8f)",
           padding: "3px",
           position: 'relative'
         }}>
           <ListItem
             w="100%"
             sx={{
-              background: "gray.500",
+              background: "navColor",
               padding: "5px",
               listStyle: "none",
             }}
