@@ -53,7 +53,7 @@ Configure the DigitalOcean droplet: https://marketplace.digitalocean.com/apps/do
 4. `chmod -x ./deploy.sh` for Linux/MacOS or in an Ubuntu WSL2 environment (Windows)
 5. Deploy to the server outlined in `deploy.sh` with `./deploy`
 
-## Deploy the Frontend
+### Deploy the Frontend
 1. Install Vercel `npm i -g vercel`
 2. `cd frontend && vercel login` (Only if you haven't logged into Vercel through the CLI, yet)
 3. `vercel --prod` to deploy to a Vercel instance
