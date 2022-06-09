@@ -6,6 +6,7 @@ import {
   Link,
   Stack,
   Text,
+  Container,
 } from "@chakra-ui/react";
 import { withUrqlClient } from "next-urql";
 import NextLink from "next/link";
@@ -43,19 +44,21 @@ const Index = () => {
   return (
     <Layout>
       <Wrapper variant="large">
-        <Hero title="Community Forum" />
+        <Hero titleSize={5} />
         <Text color="text" align={"center"} mb={10}>
           Testing out full-stack applications built with
           Express+Apollo+PostgreSQL backends and React+TS+Chakra frontends.
         </Text>
-        <NextLink href={"/create-post"}>
-          <Link as={Button} mb={10}>
-            Create Post
-          </Link>
-        </NextLink>
+        <Container centerContent>
+          <NextLink href={"/create-post"}>
+            <Link as={Button} mb={10}>
+              Create Post
+            </Link>
+          </NextLink>
+        </Container>
         <Stack spacing={8}>
           {fetching && !data && !error ? (
-            <div>loading...</div>
+            <div>Loading...</div>
           ) : (
             data!.posts.posts.map((post) => {
               let outputString: string = dateTimeFormat(post.createdAt);
