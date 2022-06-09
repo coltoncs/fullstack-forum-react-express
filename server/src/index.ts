@@ -17,23 +17,24 @@ import path from "path";
 import { createUserLoader } from "./utils/createUserLoader";
 import { createUpvoteLoader } from "./utils/createUpvoteLoader";
 
+//refresh
 const main = async () => {
-  const conn = await createConnection({
+  await createConnection({
     type: "postgres",
     url: process.env.DATABASE_URL,
     logging: true,
-    synchronize: true,
+    //synchronize: false,
     migrations: [path.join(__dirname, "./migrations/*")],
     entities: [Post, User, Upvote],
   });
-  await conn.runMigrations();
+  //await conn.runMigrations();
 
   const app = express();
 
   const RedisStore = connectRedis(session);
   const redis = new Redis(process.env.REDIS_URL);
 
-  app.set("proxy", 1);
+  app.set("trust proxy", 1);
 
   app.use(
     cors({

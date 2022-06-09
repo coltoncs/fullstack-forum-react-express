@@ -3,7 +3,7 @@ import { Post, User } from "./";
 
 @Entity()
 export class Upvote extends BaseEntity {
-  @Column({ type: 'int' })
+  @Column({ type: "int" })
   value: number
 
   @PrimaryColumn()
