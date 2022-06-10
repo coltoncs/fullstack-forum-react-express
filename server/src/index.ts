@@ -52,7 +52,7 @@ const main = async () => {
         httpOnly: true,
         sameSite: "lax", //csrf
         secure: __prod__,
-        domain: __prod__ ? '.coltoncs.com' : undefined,
+        domain: __prod__ ? ".coltoncs.com" : undefined,
       },
       saveUninitialized: false,
       secret: process.env.SESSION_SECRET,

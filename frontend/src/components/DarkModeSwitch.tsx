@@ -1,20 +1,18 @@
 import { useColorMode, IconButton } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { Size, useWindowSize } from "../utils/hooks/useWindowSize";
-import { useState, useEffect } from "react";
-import { serialize } from "v8";
 
 export const DarkModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  
+
   const size: Size = useWindowSize();
   const isDark = colorMode === "dark";
 
-  if (size.width !== undefined && size.width < 600) {
+if (size.width !== undefined && size.width < 1400) {
     return (
       <IconButton
         position="fixed"
-        bottom={5}
+        bottom={1}
         zIndex={1}
         right={5}
         icon={isDark ? <SunIcon /> : <MoonIcon />}

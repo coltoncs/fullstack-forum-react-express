@@ -23,8 +23,9 @@ const Layout: React.FC<LayoutProps> = ({children, hero, heroText}) => {
       <Footer 
         bgColor="navColor"
         width="100%"
-        py="2rem"
+        py="1.5rem"
         justifyContent="center"
+        align="center"
       >
         <Text>&copy;2022 Colton Sweeney</Text>
       </Footer>

@@ -53,11 +53,6 @@ export const Navigation: React.FC<{}> = ({}) => {
         width="50%"
       >
         <Button>
-          <NextLink href="/community">
-            <Link color="navBtn">Community</Link>
-          </NextLink>
-        </Button>
-        <Button>
           <NextLink href="/about">
             <Link color="navBtn">About</Link>
           </NextLink>
@@ -86,11 +81,6 @@ export const Navigation: React.FC<{}> = ({}) => {
         <Box>
           <Text color="navBtn">Welcome, {data.me?.username}</Text>
         </Box>
-        <Button>
-          <NextLink href="/community">
-            <ChakraLink color="navBtn">Community</ChakraLink>
-          </NextLink>
-        </Button>
         <Button>
           <NextLink href="/about">
             <ChakraLink color="navBtn">About</ChakraLink>

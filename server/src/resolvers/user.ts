@@ -135,7 +135,6 @@ export class UserResolver {
     @Ctx() { req }: MyContext
   ) {
     if (!req.session.userId) {
-      console.log('uh oh!')
       return null
     }
 
