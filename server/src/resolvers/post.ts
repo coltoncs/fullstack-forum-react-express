@@ -158,6 +158,15 @@ export class PostResolver {
     };
   }
 
+  @Query(() => [Post], { nullable: true })
+  postsByUserId(@Arg("userId", () => Int) userId: number): Promise<Post[] | undefined> {
+    return Post.find({
+      where: {
+        creatorId: userId,
+      }
+    });
+  }
+
   @Query(() => Post, { nullable: true })
   post(@Arg("id", () => Int) id: number): Promise<Post | undefined> {
     return Post.findOne(id);

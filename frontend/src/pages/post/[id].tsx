@@ -1,4 +1,4 @@
-import { Container, Flex, Heading, Link } from "@chakra-ui/react";
+import { Container, Flex, Link } from "@chakra-ui/react";
 import { withUrqlClient } from "next-urql";
 import EditDeletePostButtons from "../../components/EditDeletePostButtons";
 import NextLink from "next/link";

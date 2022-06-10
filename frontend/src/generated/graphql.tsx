@@ -110,6 +110,7 @@ export type Query = {
   me?: Maybe<User>;
   post?: Maybe<Post>;
   posts: PaginatedPosts;
+  postsByUserId?: Maybe<Array<Post>>;
   users: Array<User>;
 };
 
@@ -122,6 +123,11 @@ export type QueryPostArgs = {
 export type QueryPostsArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   limit: Scalars['Int'];
+};
+
+
+export type QueryPostsByUserIdArgs = {
+  userId: Scalars['Int'];
 };
 
 export type User = {
@@ -238,6 +244,13 @@ export type PostsQueryVariables = Exact<{
 
 
 export type PostsQuery = { __typename?: 'Query', posts: { __typename?: 'PaginatedPosts', hasMore: boolean, posts: Array<{ __typename?: 'Post', id: number, createdAt: string, updatedAt: string, title: string, points: number, textSnippet: string, voteStatus?: number | null, creator: { __typename?: 'User', id: number, username: string } }> } };
+
+export type PostsByUserIdQueryVariables = Exact<{
+  userId: Scalars['Int'];
+}>;
+
+
+export type PostsByUserIdQuery = { __typename?: 'Query', postsByUserId?: Array<{ __typename?: 'Post', id: number, createdAt: string, updatedAt: string, title: string, points: number, textSnippet: string, voteStatus?: number | null, creator: { __typename?: 'User', id: number, username: string } }> | null };
 
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -427,6 +440,17 @@ export const PostsDocument = gql`
 
 export function usePostsQuery(options: Omit<Urql.UseQueryArgs<PostsQueryVariables>, 'query'>) {
   return Urql.useQuery<PostsQuery>({ query: PostsDocument, ...options });
+};
+export const PostsByUserIdDocument = gql`
+    query PostsByUserId($userId: Int!) {
+  postsByUserId(userId: $userId) {
+    ...PostSnippet
+  }
+}
+    ${PostSnippetFragmentDoc}`;
+
+export function usePostsByUserIdQuery(options: Omit<Urql.UseQueryArgs<PostsByUserIdQueryVariables>, 'query'>) {
+  return Urql.useQuery<PostsByUserIdQuery>({ query: PostsByUserIdDocument, ...options });
 };
 export const UsersDocument = gql`
     query Users {

@@ -1,0 +1,5 @@
+query PostsByUserId($userId: Int!) {
+  postsByUserId(userId: $userId) {
+    posts { ...PostSnippet }
+  }
+}

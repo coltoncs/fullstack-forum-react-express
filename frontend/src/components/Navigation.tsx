@@ -79,7 +79,12 @@ export const Navigation: React.FC<{}> = ({}) => {
         color="navText"
       >
         <Box>
-          <Text color="navBtn">Welcome, {data.me?.username}</Text>
+          <Text color="navBtn">
+            Welcome,{" "}
+            <NextLink href="/user/[id]" as={`/user/${data.me.id}`}>
+              <ChakraLink color="navBtn">{data.me?.username}</ChakraLink>
+            </NextLink>
+          </Text>
         </Box>
         <Button>
           <NextLink href="/about">
