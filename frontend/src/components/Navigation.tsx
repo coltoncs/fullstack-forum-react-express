@@ -114,7 +114,7 @@ export const Navigation: React.FC<{}> = ({}) => {
         h="20"
         justifyContent="center"
         alignItems="center"
-        width="100vw"
+        width="100%"
         as="nav"
       >
         <NextLink href="/">
