@@ -8,17 +8,15 @@ import { dateTimeFormat } from "../../utils/stringFormatter";
 import { NextPage } from "next";
 import { useMeQuery, usePostsByUserIdQuery } from "../../generated/graphql";
 import { withApollo } from "../../utils/withApollo";
-import { useRouter } from "next/router";
+import useGetIntId from "../../utils/hooks/useGetIntId";
 
 const UserProfile: NextPage = () => {
-  const router = useRouter();
-  console.log(router.query.id)
-
+  const uid = useGetIntId();
   const { data: meData } = useMeQuery();
 
   const { data, error, loading } = usePostsByUserIdQuery({
     variables: {
-      userId: parseInt(router.query.id as string),
+      userId: uid,
     }
   });
 
@@ -105,4 +103,4 @@ const UserProfile: NextPage = () => {
   );
 };
 
-export default withApollo({ ssr: false })(UserProfile);
+export default withApollo({ ssr: true })(UserProfile);
