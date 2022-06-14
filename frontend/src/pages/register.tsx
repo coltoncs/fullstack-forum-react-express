@@ -1,20 +1,18 @@
 import { Flex, Button, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { useRegisterMutation } from "../generated/graphql";
+import { MeDocument, MeQuery, useRegisterMutation } from "../generated/graphql";
 import Wrapper from "../components/Wrapper";
 import { Field, Form, Formik, FormikProps } from "formik";
 import { toErrorMap } from "../utils/toErrorMap";
 import router from "next/router";
 import InputField from "../components/InputField";
-import { createUrqlClient } from "../utils/createUrqlClient";
-import { withUrqlClient } from "next-urql";
 import Layout from "../components/Layout";
 import { Hero } from "../components/Hero";
+import { NextPage } from "next";
+import { withApollo } from "../utils/withApollo";
 
-interface registerProps {}
-
-const register: React.FC<registerProps> = ({}) => {
-  const [, register] = useRegisterMutation();
+const Register: NextPage = ({}) => {
+  const [register] = useRegisterMutation();
   return (
     <Layout hero heroText="Register">
       <Wrapper variant="small">
@@ -22,7 +20,18 @@ const register: React.FC<registerProps> = ({}) => {
         <Formik
           initialValues={{ email: "", username: "", password: "" }}
           onSubmit={async (values, { setErrors }) => {
-            const res = await register({ options: values });
+            const res = await register({
+              variables: { options: values },
+              update: (cache, { data }) => {
+                cache.writeQuery<MeQuery>({
+                  query: MeDocument,
+                  data: {
+                    __typename: "Query",
+                    me: data?.register.user,
+                  },
+                });
+              },
+            });
             console.log(res);
             if (res.data?.register.errors) {
               setErrors(toErrorMap(res.data.register.errors));
@@ -75,4 +84,4 @@ const register: React.FC<registerProps> = ({}) => {
   );
 };
 
-export default withUrqlClient(createUrqlClient)(register);
+export default withApollo({ ssr: false })(Register);

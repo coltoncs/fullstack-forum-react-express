@@ -5,14 +5,15 @@ import { useRouter } from "next/router";
 import InputField from "../components/InputField";
 import Wrapper from "../components/Wrapper";
 import { useCreatePostMutation } from "../generated/graphql";
-import { createUrqlClient } from "../utils/createUrqlClient";
 import Layout from "../components/Layout";
 import { useIsAuth } from "../utils/hooks/useIsAuth";
 import { Hero } from "../components/Hero";
+import { NextPage } from "next";
+import { withApollo } from "../utils/withApollo";
 
-const CreatePost: React.FC<{}> = ({}) => {
+const CreatePost: NextPage = ({}) => {
   const router = useRouter();
-  const [, createPost] = useCreatePostMutation();
+  const [createPost] = useCreatePostMutation();
   useIsAuth();
   
 
@@ -23,8 +24,10 @@ const CreatePost: React.FC<{}> = ({}) => {
         <Formik
           initialValues={{ title: "", text: "" }}
           onSubmit={async (values) => {
-            const {error} = await createPost({ input: values });
-            if(!error){
+            const { errors } = await createPost({ variables: { input: values },
+              update: (cache) => cache.evict({fieldName: 'posts:{}'}),
+            });
+            if(!errors){
               router.push('/')
             }
           }}
@@ -62,4 +65,4 @@ const CreatePost: React.FC<{}> = ({}) => {
   );
 };
 
-export default withUrqlClient(createUrqlClient)(CreatePost);
+export default withApollo({ ssr: false })(CreatePost);

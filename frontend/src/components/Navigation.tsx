@@ -13,6 +13,7 @@ import { useLogoutMutation, useMeQuery } from "../generated/graphql";
 import { AddIcon } from "@chakra-ui/icons";
 import { isServer } from "../utils/isServer";
 import { useRouter } from "next/router";
+import { ApolloClient, useApolloClient } from "@apollo/client";
 
 const NavBar = styled(Flex)`
   @media screen and (max-width: 600px) {
@@ -38,9 +39,10 @@ const Link = styled(ChakraLink)`
 
 export const Navigation: React.FC<{}> = ({}) => {
   const router = useRouter();
-  const [{ fetching: logoutFetching }, logout] = useLogoutMutation();
-  const [{ data }] = useMeQuery({
-    pause: isServer(),
+  const [ logout, { loading: logoutFetching } ] = useLogoutMutation();
+  const apollo = useApolloClient();
+  const { data, loading } = useMeQuery({
+    skip: isServer(),
   });
 
   let body;
@@ -81,7 +83,7 @@ export const Navigation: React.FC<{}> = ({}) => {
         <Box>
           <Text color="navBtn">
             Welcome,{" "}
-            <NextLink href="/user/[id]" as={`/user/${data.me.id}`}>
+            <NextLink href="/user/[id]" as={`/user/${data.me?.id}`}>
               <ChakraLink color="navBtn">{data.me?.username}</ChakraLink>
             </NextLink>
           </Text>
@@ -103,6 +105,7 @@ export const Navigation: React.FC<{}> = ({}) => {
           onClick={async () => {
             await logout();
             router.reload();
+            await apollo.resetStore();
           }}
           isLoading={logoutFetching}
           color="navBtn"

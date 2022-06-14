@@ -2,22 +2,27 @@ import { Box, Container, Flex, Heading, Link, Text } from "@chakra-ui/react";
 import { Hero } from "../../components/Hero";
 import Layout from "../../components/Layout";
 import NextLink from "next/link";
-import { useMeQuery, usePostsByUserIdQuery } from "../../generated/graphql";
-import { createUrqlClient } from "../../utils/createUrqlClient";
-import { withUrqlClient } from "next-urql";
 import { UpvoteSection } from "../../components/UpvoteSection";
 import EditDeletePostButtons from "../../components/EditDeletePostButtons";
 import { dateTimeFormat } from "../../utils/stringFormatter";
+import { NextPage } from "next";
+import { useMeQuery, usePostsByUserIdQuery } from "../../generated/graphql";
+import { withApollo } from "../../utils/withApollo";
+import { useRouter } from "next/router";
 
-const UserProfile: React.FC<{}> = ({}) => {
-  const [{ data, error, fetching }] = usePostsByUserIdQuery({
+const UserProfile: NextPage = () => {
+  const router = useRouter();
+  console.log(router.query.id)
+
+  const { data: meData } = useMeQuery();
+
+  const { data, error, loading } = usePostsByUserIdQuery({
     variables: {
-      userId: 1,
-    },
+      userId: parseInt(router.query.id as string),
+    }
   });
-  const [{ data: meData }] = useMeQuery();
 
-  if (fetching) {
+  if (loading) {
     return (
       <Layout>
         <Container sx={{ height: "50vh" }}>
@@ -40,7 +45,7 @@ const UserProfile: React.FC<{}> = ({}) => {
     );
   }
 
-  if (!data || !meData?.me) {
+  if (!data) {
     return (
       <Layout>
         <Container sx={{ height: "50vh" }}>
@@ -58,7 +63,7 @@ const UserProfile: React.FC<{}> = ({}) => {
   return (
     <Layout>
       <Container>
-        <Hero title={meData.me.username} titleSize={3.7} />
+        <Hero title={meData?.me?.username} titleSize={3.7} />
         <Flex flexDir="column" gap={5}>
           {data.postsByUserId?.map((post) => {
             let outputString: string = dateTimeFormat(post.createdAt);
@@ -100,4 +105,4 @@ const UserProfile: React.FC<{}> = ({}) => {
   );
 };
 
-export default withUrqlClient(createUrqlClient)(UserProfile);
+export default withApollo({ ssr: false })(UserProfile);

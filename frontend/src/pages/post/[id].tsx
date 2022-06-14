@@ -1,17 +1,17 @@
 import { Container, Flex, Link } from "@chakra-ui/react";
-import { withUrqlClient } from "next-urql";
 import EditDeletePostButtons from "../../components/EditDeletePostButtons";
 import NextLink from "next/link";
 import Layout from "../../components/Layout";
 import Wrapper from "../../components/Wrapper";
-import { createUrqlClient } from "../../utils/createUrqlClient";
 import useGetPostFromUrl from "../../utils/hooks/useGetPostFromUrl";
 import { Hero } from "../../components/Hero";
+import { NextPage } from "next";
+import { withApollo } from "../../utils/withApollo";
 
-const Post = () => {
-  const [{ data, error, fetching }] = useGetPostFromUrl();
+const Post: NextPage = () => {
+  const { data, error, loading } = useGetPostFromUrl();
 
-  if (fetching) {
+  if (loading) {
     return <Layout>...post fetching...</Layout>;
   }
 
@@ -50,4 +50,4 @@ const Post = () => {
   );
 };
 
-export default withUrqlClient(createUrqlClient, { ssr: true })(Post);
+export default withApollo({ ssr: true })(Post);

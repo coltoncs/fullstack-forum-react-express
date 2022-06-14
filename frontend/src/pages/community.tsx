@@ -1,4 +1,5 @@
 import { Text, ListItem, UnorderedList, Box } from "@chakra-ui/react";
+import { NextPage } from "next";
 import { withUrqlClient } from "next-urql";
 import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
@@ -6,7 +7,7 @@ import Wrapper from "../components/Wrapper";
 import { useUsersQuery } from "../generated/graphql";
 import { createUrqlClient } from "../utils/createUrqlClient";
 
-const Community = () => {
+const Community: NextPage = () => {
   const [{ data, fetching }] = useUsersQuery();
 
   let body;

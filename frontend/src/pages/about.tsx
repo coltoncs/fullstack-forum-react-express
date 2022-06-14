@@ -1,12 +1,13 @@
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Flex, Text, Link } from "@chakra-ui/react";
+import { NextPage } from "next";
 import { withUrqlClient } from "next-urql";
 import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
 import Wrapper from "../components/Wrapper";
 import { createUrqlClient } from "../utils/createUrqlClient";
 
-const About = () => {
+const About: NextPage = () => {
   return (
     <Layout>
       <Wrapper variant="large">
