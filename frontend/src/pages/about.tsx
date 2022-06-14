@@ -1,6 +1,7 @@
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Flex, Text, Link } from "@chakra-ui/react";
 import { NextPage } from "next";
+import { withApollo } from "next-apollo";
 import { withUrqlClient } from "next-urql";
 import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
@@ -26,4 +27,4 @@ const About: NextPage = () => {
   );
 };
 
-export default withUrqlClient(createUrqlClient)(About);
+export default withApollo({ ssr: false })(About);
