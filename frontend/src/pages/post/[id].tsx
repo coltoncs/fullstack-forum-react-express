@@ -7,6 +7,7 @@ import useGetPostFromUrl from "../../utils/hooks/useGetPostFromUrl";
 import { Hero } from "../../components/Hero";
 import { NextPage } from "next";
 import { withApollo } from "../../utils/withApollo";
+import Head from "next/head";
 
 const Post: NextPage = () => {
   const { data, error, loading } = useGetPostFromUrl();
@@ -21,6 +22,10 @@ const Post: NextPage = () => {
 
   if (!data?.post) {
     return (
+      <>
+      <Head>
+        <title>Post Not Found | Community Forum</title>
+      </Head>
       <Layout>
         <Container sx={{ height: "50vh" }}>
           <Hero title="No Post Found" titleSize={3.7} />
@@ -31,10 +36,15 @@ const Post: NextPage = () => {
           </Flex>
         </Container>
       </Layout>
+      </>
     );
   }
 
   return (
+    <>
+    <Head>
+      <title>{data.post.title.slice(0,30)} | Community Forum</title>
+    </Head>
     <Layout>
       <Wrapper variant="large">
         <Hero title={data.post.title} titleSize={3} />
@@ -47,6 +57,7 @@ const Post: NextPage = () => {
         </Flex>
       </Wrapper>
     </Layout>
+    </>
   );
 };
 
