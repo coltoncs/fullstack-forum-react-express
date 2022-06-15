@@ -3,7 +3,9 @@ import { Field, Form, Formik, FormikProps } from "formik";
 import { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
+import { Hero } from "../components/Hero";
 import InputField from "../components/InputField";
+import Layout from "../components/Layout";
 import Wrapper from "../components/Wrapper";
 import { useForgotPasswordMutation } from "../generated/graphql";
 import { withApollo } from "../utils/withApollo";
@@ -17,8 +19,9 @@ const ForgotPassword: NextPage = ({}) => {
       <Head>
         <title>Forgot Password | Community Forum</title>
       </Head>
-      <Flex justifyContent={`center`} alignItems={`center`} h={`90vh`}>
+      <Layout>
         <Wrapper variant="small">
+          <Hero title="Forgot Password" titleSize={3} />
           <Formik
             initialValues={{ email: "" }}
             onSubmit={async (values) => {
@@ -43,7 +46,7 @@ const ForgotPassword: NextPage = ({}) => {
                     <Field
                       name="email"
                       as={InputField}
-                      placeholder="email"
+                      placeholder="Enter your email"
                       label="Email"
                     />
                     <Button mt={4} isLoading={props.isSubmitting} type="submit">
@@ -55,7 +58,7 @@ const ForgotPassword: NextPage = ({}) => {
             }
           </Formik>
         </Wrapper>
-      </Flex>
+      </Layout>
     </>
   );
 };
