@@ -2,7 +2,6 @@ import { Flex, Text } from "@chakra-ui/react";
 import { Footer } from "../components/Footer";
 import Navigation from "../components/Navigation";
 import { DarkModeSwitch } from "./DarkModeSwitch";
-import { Hero } from "./Hero";
 
 type LayoutProps = {
   children: React.ReactNode | React.ReactNode[];
