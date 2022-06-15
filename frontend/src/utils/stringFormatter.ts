@@ -1,19 +1,20 @@
-export const dateTimeFormat = (dateTime: string) => {
-  let newDate = new Date();
-  const date: any = dateTime;
-  newDate.setTime(date);
-  const dateString = newDate.toUTCString();
-  const formattedDateString = dateString.split(" ");
-  const hours = newDate.getHours();
-  const minutes = newDate.getMinutes();
-  const year = newDate.getFullYear();
-  let timeOfDay;
+export const dateTimeFormat = (dateTime: string): string => {
+  let newDate: Date = new Date();
+  const date: string = dateTime;
+  const dateInt: number = parseInt(dateTime);
+  newDate.setTime(dateInt);
+  const dateString: string = newDate.toUTCString();
+  const formattedDateString: string[] = dateString.split(" ");
+  const hours: number = newDate.getHours();
+  const minutes: number = newDate.getMinutes();
+  const year: number = newDate.getFullYear();
+  let timeOfDay: string;
   if (hours > 12) {
     timeOfDay = "PM";
   } else {
     timeOfDay = "AM";
   }
-  const outputString =
+  const outputString: string =
     formattedDateString[0] +
     " " +
     formattedDateString[1] +

@@ -9,6 +9,7 @@ import { NextPage } from "next";
 import { useMeQuery, usePostsByUserIdQuery } from "../../generated/graphql";
 import { withApollo } from "../../utils/withApollo";
 import useGetIntId from "../../utils/hooks/useGetIntId";
+import Head from "next/head";
 
 const UserProfile: NextPage = () => {
   const uid = useGetIntId();
@@ -22,16 +23,25 @@ const UserProfile: NextPage = () => {
 
   if (loading) {
     return (
+      <>
+      <Head>
+        <title>User Profile | Community Forum</title>
+      </Head>
       <Layout>
         <Container sx={{ height: "50vh" }}>
           <Text>Fetching Posts...</Text>
         </Container>
       </Layout>
+      </>
     );
   }
 
   if (error) {
     return (
+      <>
+      <Head>
+        <title>User Error | Community Forum</title>
+      </Head>
       <Layout>
         <Container sx={{ height: "50vh" }}>
           <Hero title="Error" titleSize={3.7} />
@@ -40,11 +50,16 @@ const UserProfile: NextPage = () => {
           </Flex>
         </Container>
       </Layout>
+      </>
     );
   }
 
   if (!data) {
     return (
+      <>
+      <Head>
+        <title>User Not Found | Community Forum</title>
+      </Head>
       <Layout>
         <Container sx={{ height: "50vh" }}>
           <Hero title="User Not Found" titleSize={3.7} />
@@ -55,10 +70,15 @@ const UserProfile: NextPage = () => {
           </Flex>
         </Container>
       </Layout>
+      </>
     );
   }
 
   return (
+    <>
+    <Head>
+      <title>{meData?.me?.username} | Community Forum</title>
+    </Head>
     <Layout>
       <Container>
         <Hero title={meData?.me?.username} titleSize={3.7} />
@@ -100,6 +120,7 @@ const UserProfile: NextPage = () => {
         </Flex>
       </Container>
     </Layout>
+    </>
   );
 };
 

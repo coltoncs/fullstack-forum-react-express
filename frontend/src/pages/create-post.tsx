@@ -18,7 +18,7 @@ const CreatePost: NextPage = ({}) => {
   
 
   return (
-    <Layout hero heroText="Create A New Post">
+    <Layout>
       <Wrapper variant="small">
         <Hero title="Create Post" titleSize={4} />
         <Formik

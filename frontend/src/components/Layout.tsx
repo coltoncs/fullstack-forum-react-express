@@ -1,19 +1,18 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { Flex, Link } from "@chakra-ui/react";
 import { Footer } from "../components/Footer";
 import Navigation from "../components/Navigation";
 import { DarkModeSwitch } from "./DarkModeSwitch";
 
 type LayoutProps = {
   children: React.ReactNode | React.ReactNode[];
-  hero?: React.ReactNode;
-  heroText?: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({children, hero, heroText}) => { 
+const Layout: React.FC<LayoutProps> = ({children}) => { 
   return(
     <>
       <Navigation />
-      <Flex flex="0 1 0">
+      <Flex flex="0 1 0" pb="5%">
         {/* sidebar 1 */}
         {children}
         {/* sidebar 2 */}
@@ -26,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({children, hero, heroText}) => {
         justifyContent="center"
         align="center"
       >
-        <Text>&copy;2022 Colton Sweeney</Text>
+        <Flex justify="center" align="center"><Link href="https://coltonsweeney.com/" target="_blank" rel="noreferrer">&copy;2022 Colton Sweeney</Link><ExternalLinkIcon boxSize="15px" mx="5px" /></Flex>
       </Footer>
     </>
   )
