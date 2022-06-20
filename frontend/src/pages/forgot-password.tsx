@@ -8,7 +8,7 @@ import InputField from "../components/InputField";
 import Layout from "../components/Layout";
 import Wrapper from "../components/Wrapper";
 import { useForgotPasswordMutation } from "../generated/graphql";
-import { withApollo } from "../utils/withApollo";
+import withApollo from "../utils/withApollo";
 
 const ForgotPassword: NextPage = ({}) => {
   const [complete, setComplete] = useState(false);

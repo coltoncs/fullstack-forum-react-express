@@ -19,7 +19,7 @@ import { UpvoteSection } from "../components/UpvoteSection";
 import Wrapper from "../components/Wrapper";
 import { usePostsQuery } from "../generated/graphql";
 import { dateTimeFormat } from "../utils/stringFormatter";
-import { withApollo } from "../utils/withApollo";
+import withApollo from "../utils/withApollo";
 
 const Index: NextPage = () => {
   const { data, error, loading, fetchMore, variables } = usePostsQuery({

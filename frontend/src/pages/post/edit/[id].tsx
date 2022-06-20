@@ -13,7 +13,7 @@ import {
   useUpdatePostMutation,
 } from "../../../generated/graphql";
 import useGetIntId from "../../../utils/hooks/useGetIntId";
-import { withApollo } from "../../../utils/withApollo";
+import withApollo from "../../../utils/withApollo";
 
 const EditPost: NextPage = ({}) => {
   const router = useRouter();

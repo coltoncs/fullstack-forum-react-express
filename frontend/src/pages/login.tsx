@@ -9,8 +9,7 @@ import NextLink from "next/link";
 import Layout from "../components/Layout";
 import { Hero } from "../components/Hero";
 import { NextPage } from "next";
-import { withApollo } from "../utils/withApollo";
-import { gql, useApolloClient } from "@apollo/client";
+import withApollo from "../utils/withApollo";
 import Head from "next/head";
 
 const Login: NextPage = ({}) => {

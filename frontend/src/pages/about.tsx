@@ -12,7 +12,7 @@ import { NextPage } from "next";
 import { Hero } from "../components/Hero";
 import Layout from "../components/Layout";
 import Wrapper from "../components/Wrapper";
-import { withApollo } from "../utils/withApollo";
+import withApollo from "../utils/withApollo";
 import { TbBrandNextjs } from "react-icons/tb";
 import {
   SiChakraui,
