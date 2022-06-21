@@ -8,7 +8,6 @@ import Layout from "../components/Layout";
 import { useIsAuth } from "../utils/hooks/useIsAuth";
 import { Hero } from "../components/Hero";
 import { NextPage } from "next";
-import withApollo from "../utils/withApollo";
 import Head from "next/head";
 
 const CreatePost: NextPage = ({}) => {
@@ -70,4 +69,4 @@ const CreatePost: NextPage = ({}) => {
   );
 };
 
-export default withApollo({ ssr: false })(CreatePost);
+export default CreatePost;

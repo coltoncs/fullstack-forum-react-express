@@ -7,7 +7,6 @@ import EditDeletePostButtons from "../../components/EditDeletePostButtons";
 import { dateTimeFormat } from "../../utils/stringFormatter";
 import { NextPage } from "next";
 import { useMeQuery, usePostsByUserIdQuery } from "../../generated/graphql";
-import withApollo from "../../utils/withApollo";
 import useGetIntId from "../../utils/hooks/useGetIntId";
 import Head from "next/head";
 
@@ -124,4 +123,4 @@ const UserProfile: NextPage = () => {
   );
 };
 
-export default withApollo({ ssr: true })(UserProfile);
+export default UserProfile;

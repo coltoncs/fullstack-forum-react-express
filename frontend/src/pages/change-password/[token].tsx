@@ -13,7 +13,6 @@ import {
 import { toErrorMap } from "../../utils/toErrorMap";
 import NextLink from "next/link";
 import Layout from "../../components/Layout";
-import withApollo from "../../utils/withApollo";
 import Head from "next/head";
 
 const ChangePassword: NextPage = () => {
@@ -98,4 +97,4 @@ const ChangePassword: NextPage = () => {
   );
 };
 
-export default withApollo({ ssr: false })(ChangePassword);
+export default ChangePassword;

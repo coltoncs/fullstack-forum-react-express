@@ -6,7 +6,6 @@ import Wrapper from "../../components/Wrapper";
 import useGetPostFromUrl from "../../utils/hooks/useGetPostFromUrl";
 import { Hero } from "../../components/Hero";
 import { NextPage } from "next";
-import withApollo from "../../utils/withApollo";
 import Head from "next/head";
 
 const Post: NextPage = () => {
@@ -61,4 +60,4 @@ const Post: NextPage = () => {
   );
 };
 
-export default withApollo({ ssr: true })(Post);
+export default Post;

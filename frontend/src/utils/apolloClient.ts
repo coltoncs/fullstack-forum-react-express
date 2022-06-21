@@ -1,7 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import theme from "../theme";
-import { AppProps } from "next/app";
-import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 import { PaginatedPosts } from "../generated/graphql";
 import { setContext } from '@apollo/client/link/context';
 
@@ -46,15 +43,3 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: memCache,
 });
-
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <ApolloProvider client={client}>
-    <ChakraProvider resetCSS theme={theme}>
-      <Component {...pageProps} />
-    </ChakraProvider>
-    </ApolloProvider>
-  );
-}
-
-export default MyApp;
