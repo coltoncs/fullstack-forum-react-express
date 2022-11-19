@@ -7,6 +7,9 @@ import useGetPostFromUrl from "../../utils/hooks/useGetPostFromUrl";
 import { Hero } from "../../components/Hero";
 import { NextPage } from "next";
 import Head from "next/head";
+import { addApolloState, initializeApollo } from "../../utils/apolloClient";
+import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
+import { PostsDocument } from "../../generated/graphql";
 
 const Post: NextPage = () => {
   const { data, error, loading } = useGetPostFromUrl();
@@ -59,5 +62,13 @@ const Post: NextPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const apolloClient: ApolloClient<NormalizedCacheObject> = initializeApollo();
+
+  return addApolloState(apolloClient, {
+    props: {}
+  })
+}
 
 export default Post;

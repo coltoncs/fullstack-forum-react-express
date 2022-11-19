@@ -1,4 +1,4 @@
-import { usePostQuery, usePostsByUserIdQuery } from "../../generated/graphql";
+import { usePostQuery } from "../../generated/graphql";
 import useGetIntId from "./useGetIntId";
 
 const getPostFromUrl = () => {

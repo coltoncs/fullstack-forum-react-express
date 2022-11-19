@@ -10,9 +10,11 @@ import Layout from "../components/Layout";
 import { Hero } from "../components/Hero";
 import { NextPage } from "next";
 import Head from "next/head";
+import { useApolloClient } from "@apollo/client";
 
 const Login: NextPage = ({}) => {
   const [login] = useLoginMutation();
+  const client = useApolloClient();
   return (
     <>
       <Head>

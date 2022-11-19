@@ -7,6 +7,8 @@ import {
   Stack,
   Text,
   Container,
+  Spinner,
+  Center,
 } from "@chakra-ui/react";
 import { NextPage } from "next";
 import Head from "next/head";
@@ -62,7 +64,9 @@ const Index: NextPage = () => {
           </Container>
           <Stack spacing={8}>
             {loading && !data && !error ? (
-              <div>Loading...</div>
+              <Center>
+                <Spinner size="xl" colorScheme="gray" label="Loading posts..." />
+              </Center>
             ) : (
               data!.posts.posts.map((post) => {
                 let outputString: string = dateTimeFormat(post.createdAt);

@@ -13,7 +13,7 @@ import { useLogoutMutation, useMeQuery } from "../generated/graphql";
 import { AddIcon } from "@chakra-ui/icons";
 import { isServer } from "../utils/isServer";
 import { useRouter } from "next/router";
-import { ApolloClient, useApolloClient } from "@apollo/client";
+import { useApolloClient } from "@apollo/client";
 
 const NavBar = styled(Flex)`
   @media screen and (max-width: 600px) {
@@ -41,7 +41,7 @@ export const Navigation: React.FC<{}> = ({}) => {
   const router = useRouter();
   const [ logout, { loading: logoutFetching } ] = useLogoutMutation();
   const apollo = useApolloClient();
-  const { data, loading } = useMeQuery({
+  const { data } = useMeQuery({
     skip: isServer(),
   });
 

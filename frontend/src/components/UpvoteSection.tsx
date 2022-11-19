@@ -1,10 +1,16 @@
 import { ApolloCache } from "@apollo/client";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
-import { Flex } from "@chakra-ui/react";
+import { Flex, IconButton } from "@chakra-ui/react";
 import { gql } from "graphql-tag";
 import { NextPage } from "next";
 
-import { PostSnippetFragment, useVoteMutation, VoteMutation } from "../generated/graphql";
+import {
+  PostSnippetFragment,
+  useMeQuery,
+  useVoteMutation,
+  VoteMutation,
+} from "../generated/graphql";
+import { isServer } from "../utils/isServer";
 
 interface UpvoteSectionProps {
   post: PostSnippetFragment;
@@ -51,11 +57,17 @@ const updateAfterVote = (
 
 export const UpvoteSection: NextPage<UpvoteSectionProps> = ({ post }) => {
   const [vote] = useVoteMutation();
+  const { data: userData } = useMeQuery({
+    skip: isServer(),
+  });
+
   return (
     <Flex flexDir={"column"} justify={`center`} align={`center`} mr={5}>
-      <ChevronUpIcon
+      <IconButton
+        aria-label="upvote"
+        size="sm"
+        icon={<ChevronUpIcon />}
         sx={{
-          cursor: "pointer",
           padding: "5px",
           marginBottom: "5px",
           borderRadius: "8px",
@@ -68,7 +80,6 @@ export const UpvoteSection: NextPage<UpvoteSectionProps> = ({ post }) => {
         _hover={{
           boxShadow: "0 0 5px rgba(255,255,255,0.3)",
         }}
-        boxSize={"24px"}
         onClick={async () => {
           if (post.voteStatus === 1) {
             return;
@@ -82,9 +93,13 @@ export const UpvoteSection: NextPage<UpvoteSectionProps> = ({ post }) => {
           });
         }}
         color={post.voteStatus === 1 ? "#7CFC00" : undefined}
+        disabled={!userData?.me}
       />
       {post.points}
-      <ChevronDownIcon
+      <IconButton
+        aria-label="downvote"
+        size="sm"
+        icon={<ChevronDownIcon />}
         sx={{
           cursor: "pointer",
           padding: "5px",
@@ -99,7 +114,6 @@ export const UpvoteSection: NextPage<UpvoteSectionProps> = ({ post }) => {
         _hover={{
           boxShadow: "0 0 5px rgba(255,255,255,0.3)",
         }}
-        boxSize={"24px"}
         onClick={async () => {
           if (post.voteStatus === -1) {
             return;
@@ -113,6 +127,7 @@ export const UpvoteSection: NextPage<UpvoteSectionProps> = ({ post }) => {
           });
         }}
         color={post.voteStatus === -1 ? "#D2042D" : undefined}
+        disabled={!userData?.me}
       />
     </Flex>
   );

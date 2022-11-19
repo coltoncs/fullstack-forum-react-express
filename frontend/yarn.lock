@@ -1297,7 +1297,7 @@
     "@graphql-tools/utils" "^8.1.1"
     tslib "~2.3.0"
 
-"@graphql-codegen/plugin-helpers@^2.3.2", "@graphql-codegen/plugin-helpers@^2.4.0", "@graphql-codegen/plugin-helpers@^2.4.1":
+"@graphql-codegen/plugin-helpers@^2.0.0", "@graphql-codegen/plugin-helpers@^2.3.2", "@graphql-codegen/plugin-helpers@^2.4.0", "@graphql-codegen/plugin-helpers@^2.4.1":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/plugin-helpers/-/plugin-helpers-2.4.2.tgz#e4f6b74dddcf8a9974fef5ce48562ae0980f9fed"
   integrity sha512-LJNvwAPv/sKtI3RnRDm+nPD+JeOfOuSOS4FFIpQCMUCyMnFcchV/CPTTv7tT12fLUpEg6XjuFfDBvOwndti30Q==
@@ -1328,17 +1328,6 @@
     "@graphql-codegen/visitor-plugin-common" "2.7.4"
     auto-bind "~4.0.0"
     tslib "~2.3.0"
-
-"@graphql-codegen/typescript-react-apollo@^3.2.16":
-  version "3.2.16"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-apollo/-/typescript-react-apollo-3.2.16.tgz#dbad90d123df80ffb16c6baa26fbdcd14e599c5d"
-  integrity sha512-/tsu7yzVNFfJszfZne9J1Qg4xpriNnoD0pXR+3BJUQjy4cAtApP5H1WTTwdCJCIlPMYJi8r9GFZ3qaYE6mMd3g==
-  dependencies:
-    "@graphql-codegen/plugin-helpers" "^2.4.0"
-    "@graphql-codegen/visitor-plugin-common" "2.9.1"
-    auto-bind "~4.0.0"
-    change-case-all "1.0.14"
-    tslib "~2.4.0"
 
 "@graphql-codegen/typescript-urql@^3.5.7":
   version "3.5.7"
@@ -1377,7 +1366,7 @@
     parse-filepath "^1.0.2"
     tslib "~2.3.0"
 
-"@graphql-codegen/visitor-plugin-common@2.9.1":
+"@graphql-codegen/visitor-plugin-common@^2.0.0":
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.9.1.tgz#17dfe33e19e846e7475ab9d4ff43de5130e18397"
   integrity sha512-j9eGOSGt+sJcwv0ijhZiQ2cF/0ponscekNVoF+vHdOT4RB0qgOQxykPBk6EbKxIHECnkdV8ARdPVTA21A93/QQ==
@@ -2934,6 +2923,15 @@ got@^9.6.0:
     p-cancelable "^1.0.0"
     to-readable-stream "^1.0.0"
     url-parse-lax "^3.0.0"
+
+graphql-codegen-apollo-next-ssr@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/graphql-codegen-apollo-next-ssr/-/graphql-codegen-apollo-next-ssr-1.7.2.tgz#0569eae98ac145d27aa06ab7ac7903643e6e16c5"
+  integrity sha512-hkP4u6qMvsFnyecUSOrLvTz5nn3/0lWTjwBikI090t/bdMfCnxn6s7ozPsBJ+KG9RpYkywh0liOZdUKBzgbdPg==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "^2.0.0"
+    "@graphql-codegen/visitor-plugin-common" "^2.0.0"
+    auto-bind "~4.0.0"
 
 graphql-config@^4.1.0:
   version "4.3.0"
