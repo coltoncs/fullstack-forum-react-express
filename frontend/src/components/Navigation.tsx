@@ -39,7 +39,7 @@ const Link = styled(ChakraLink)`
 
 export const Navigation: React.FC<{}> = ({}) => {
   const router = useRouter();
-  const [ logout, { loading: logoutFetching } ] = useLogoutMutation();
+  const [logout, { loading: logoutFetching }] = useLogoutMutation();
   const apollo = useApolloClient();
   const { data } = useMeQuery({
     skip: isServer(),
@@ -54,21 +54,21 @@ export const Navigation: React.FC<{}> = ({}) => {
         gap="5px"
         width="50%"
       >
-        <Button>
-          <NextLink href="/about">
+        <NextLink href="/about">
+          <Button>
             <Link color="navBtn">About</Link>
-          </NextLink>
-        </Button>
-        <Button>
-          <NextLink href="/register">
+          </Button>
+        </NextLink>
+        <NextLink href="/register">
+          <Button>
             <Link color="navBtn">Register</Link>
-          </NextLink>
-        </Button>
-        <Button>
-          <NextLink href="/login">
+          </Button>
+        </NextLink>
+        <NextLink href="/login">
+          <Button>
             <Link color="navBtn">Login</Link>
-          </NextLink>
-        </Button>
+          </Button>
+        </NextLink>
       </NavBody>
     );
   } else {
@@ -88,11 +88,11 @@ export const Navigation: React.FC<{}> = ({}) => {
             </NextLink>
           </Text>
         </Box>
-        <Button>
-          <NextLink href="/about">
+        <NextLink href="/about">
+          <Button>
             <ChakraLink color="navBtn">About</ChakraLink>
-          </NextLink>
-        </Button>
+          </Button>
+        </NextLink>
         <NextLink href={"/create-post"}>
           <IconButton
             as={ChakraLink}
