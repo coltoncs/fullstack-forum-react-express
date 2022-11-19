@@ -73,6 +73,7 @@ const EditPost: NextPage = ({}) => {
                     as={InputField}
                     placeholder="title"
                     label="Title"
+                    variant="filled"
                   />
                   <Field
                     name="text"
@@ -80,6 +81,7 @@ const EditPost: NextPage = ({}) => {
                     as={InputField}
                     placeholder="text"
                     label="Body"
+                    variant="filled"
                   />
                   <Button mt={4} isLoading={props.isSubmitting} type="submit">
                     Update Post

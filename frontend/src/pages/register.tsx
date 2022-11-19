@@ -57,12 +57,14 @@ const Register: NextPage = ({}) => {
                     as={InputField}
                     placeholder="Enter your username..."
                     label="Username"
+                    variant="filled"
                   />
                   <Field
                     name="email"
                     as={InputField}
                     placeholder="Enter your email..."
                     label="Email"
+                    variant="filled"
                   />
                   <Field
                     name="password"
@@ -70,6 +72,7 @@ const Register: NextPage = ({}) => {
                     placeholder="Enter your password..."
                     label="Password"
                     type="password"
+                    variant="filled"
                   />
                   <Flex flexDir={"column"} align={`center`} gap={`25px`}>
                     <Button mt={4} isLoading={props.isSubmitting} type="submit">

@@ -63,6 +63,7 @@ const Login: NextPage = ({}) => {
                     as={InputField}
                     placeholder="Enter your username or email..."
                     label="Username or Email"
+                    variant="filled"
                   />
                   <Field
                     name="password"
@@ -70,6 +71,7 @@ const Login: NextPage = ({}) => {
                     placeholder="Enter your password..."
                     label="Password"
                     type="password"
+                    variant="filled"
                   />
                   <Flex flexDir={"column"} align={`center`} gap={`25px`}>
                     <Button mt={4} isLoading={props.isSubmitting} type="submit">

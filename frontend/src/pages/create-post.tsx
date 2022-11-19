@@ -46,15 +46,17 @@ const CreatePost: NextPage = ({}) => {
                   <Field
                     name="title"
                     as={InputField}
-                    placeholder="title"
+                    placeholder="Enter a post title..."
                     label="Title"
+                    variant="filled"
                   />
                   <Field
                     name="text"
                     textarea
                     as={InputField}
-                    placeholder="text"
+                    placeholder="Write your post here..."
                     label="Body"
+                    variant="filled"
                   />
                   <Button mt={4} isLoading={props.isSubmitting} type="submit">
                     Create Post
